@@ -4,7 +4,7 @@ let gold = 50;
 let currentWeapon = 0;
 let fighting;
 let monsterHealth;
-let inventory = ["stick"];
+let inventory = ["soco"];
 
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
@@ -16,6 +16,24 @@ const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
+const weapons = [
+  {
+    name: "Soco",
+    power: 5
+  },
+  {
+    name: "Punhal",
+    power: 30 
+  },
+  {
+    name: "Martelo de Garra",
+    power: 50
+  },
+  {
+    name: "Espada",
+    power: 100
+  }
+];
 const locations = [
 {
   name: "town square",
@@ -69,11 +87,24 @@ function fightDragon() {
 }
 
 function buyHealth() {
-
+  if (gold >= 10){
+    gold -= 10;
+    health += 10;
+    goldText.innerText = gold;
+    healthText.innerText = health;
+    } else {
+      text.innerText = "Você não tem ouro suficiente para comprar Vida."
+    }
 }
 
 function buyWeapon() {
-
+  if (gold >= 30){
+    gold -= 30;
+    currentWeapon ++;
+    goldText.innerText = gold;
+  } else {
+    text.innerText = "Agora você tem uma nova arma";
+  }
 }
 
 function fightSlime() {
