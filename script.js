@@ -28,6 +28,12 @@ const locations = [
   "button text": ["Comprar 10 vida (10 ouro)", "Comprar arma (30 ouro)", "Ir para a praça da cidade"],
   "button functions": [buyHealth, buyWeapon, goTown],
   text: "Você entrou na loja."
+},
+{
+  name: "cave",
+  "button text": ["Lutar Lesma", "Lutar Fera", "Ir para a praça da cidade"],
+  "button functions": [fightSlime, fightBeast, goTown],
+  text: "Você entra na caverna. Você vê alguns monstros."
 }
 ];
 
@@ -55,7 +61,7 @@ function goStore() {
 }
 
 function goCave() {
-  console.log("Going to cave.");
+  update(locations[2]);
 }
 
 function fightDragon() {
@@ -67,5 +73,13 @@ function buyHealth() {
 }
 
 function buyWeapon() {
+
+}
+
+function fightSlime() {
+
+}
+
+function fightBeast() {
 
 }
