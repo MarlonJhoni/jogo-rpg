@@ -37,27 +37,21 @@ button2.onclick = goCave;
 button3.onclick = fightDragon;
 
 function update(location){
-  
+  button1.innerText = location["button text"][0];
+  button2.innerText = location["button text"][1];
+  button3.innerText = location["button text"][2];
+  button1.onclick = location["button functions"][0];
+  button2.onclick = location["button functions"][1];
+  button3.onclick = location["button functions"][2];  
+  text.innerText = location.text;
 }
 
 function goTown() {
-  button1.innerText = "Ir para loja";
-  button2.innerText = "Ir para caverna";
-  button3.innerText = "Lutar contra o Dragão";
-  button1.onclick = goStore;
-  button2.onclick = goCave;
-  button3.onclick = fightDragon;
-  text.innerText = "Você está na praça da cidade. Você vê uma placa que diz \"Loja\".";
+  update(locations[0]);
 }
 
 function goStore() {
-  button1.innerText = "Comprar 10 vida (10 ouro)";
-  button2.innerText = "Comprar arma (30 ouro)";
-  button3.innerText = "Ir para a praça da cidade";
-  button1.onclick = buyHealth;
-  button2.onclick = buyWeapon;
-  button3.onclick = goTown;
-  text.innerText = "Você entrou na loja."
+  update(locations[1]);
 }
 
 function goCave() {
