@@ -23,7 +23,13 @@ button2.onclick = goCave;
 button3.onclick = fightDragon;
 
 function goStore() {
-  console.log("Going to store.");
+  button1.innerText = "Comprar 10 vida (10 ouro)";
+  button2.innerText = "Comprar arma (30 ouro)";
+  button3.innerText = "Ir para a praça da cidade";
+  button1.onclick = buyHealth;
+  button2.onclick = buyWeapon;
+  button3.onclick = goTown;
+  text.innerText = "Você entrou na loja."
 }
 
 function goCave() {
@@ -32,4 +38,22 @@ function goCave() {
 
 function fightDragon() {
   console.log("Fighting dragon.");
+}
+
+function buyHealth() {
+
+}
+
+function buyWeapon() {
+
+}
+
+function goTown() {
+  button1.innerText = "Comprar 10 vida (10 ouro)";
+  button2.innerText = "Comprar arma (30 ouro)";
+  button3.innerText = "Ir para a praça da cidade";
+  button1.onclick = buyHealth;
+  button2.onclick = buyWeapon;
+  button3.onclick = goTown;
+  text.innerText = "Você entrou na loja."
 }
