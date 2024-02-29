@@ -52,7 +52,30 @@ const locations = [
   "button text": ["Lutar Lesma", "Lutar Fera", "Ir para a praça da cidade"],
   "button functions": [fightSlime, fightBeast, goTown],
   text: "Você entra na caverna. Você vê alguns monstros."
+},
+{
+  name: "fight",
+  "button text": ["Atacar", "Desviar", "Correr"],
+  "button functions": [attack, dodge, goTown],
+  text: "Você está lutando contra um monstro."
 }
+];
+const monsters = [
+  {
+    name: "Lesma",
+    level: 2,
+    health: 15 
+  },
+  {
+    name: "Fera",
+    level: 8,
+    health: 60
+  },
+  {
+    name: "Dragão",
+    level: 20,
+    health: 300
+  }
 ];
 
 // initialize buttons
@@ -82,19 +105,15 @@ function goCave() {
   update(locations[2]);
 }
 
-function fightDragon() {
-  console.log("Fighting dragon.");
-}
-
 function buyHealth() {
   if (gold >= 10){
     gold -= 10;
     health += 10;
     goldText.innerText = gold;
     healthText.innerText = health;
-    } else {
-      text.innerText = "Você não tem ouro suficiente para comprar Vida."
-    }
+  } else {
+    text.innerText = "Você não tem ouro suficiente para comprar Vida."
+  }
 }
 
 function buyWeapon() {
@@ -130,9 +149,30 @@ function sellWeapon() {
 }
 
 function fightSlime() {
-
+  fighting = 0;
+  goFight();
 }
 
 function fightBeast() {
+  fighting = 1;
+  goFight();
+}
 
+function fightDragon() {
+  fighting = 2;
+  goFight();
+}
+
+function goFight() {
+  update(locations[3]);
+  monsterHealth = monsters[fighting].health;
+  monsterStats.style.display = 'block';
+}
+
+function attack(){
+
+}
+
+function dodge(){
+  
 }
