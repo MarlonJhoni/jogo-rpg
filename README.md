@@ -5,13 +5,13 @@ Bem-vindo ao meu jogo de RPG - Dragon Repeller! Este é um jogo simples em desen
 ## Funcionalidades
 
 - **Batalhas épicas:** Enfrente monstros poderosos em batalhas.
-- **Sistema de inventário:** Compra e venda os itens do seu personagem.
+- **Sistema de inventário:** Compra e venda os equipamentos do seu personagem.
 - **Sistema bancário:** Gerenciamento dos seus ouros.
 - **Exploração:** Descubra terras desconhecidas, cidades misteriosas e masmorras perigosas.
 
 ## Como Jogar
 
-Acesse: 
+Acesse: https://marlonjhoni.github.io/jogo-rpg/
 
 ## Capturas de Tela
 
