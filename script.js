@@ -4,7 +4,7 @@ let gold = 50;
 let currentWeapon = 0;
 let fighting;
 let monsterHealth;
-let inventory = ["soco"];
+let inventory = ["Luva"];
 
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
@@ -18,7 +18,7 @@ const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 const weapons = [
   {
-    name: "Soco",
+    name: "Luva",
     power: 5
   },
   {
@@ -43,7 +43,7 @@ const locations = [
 },
 {
   name: "store",
-  "button text": ["Comprar 10 vida (10 ouro)", "Comprar arma (30 ouro)", "Ir para a praça da cidade"],
+  "button text": ["Comprar 10 vida (10 ouro)", "Comprar arma (30 ouro)", "Ir para a Cidade"],
   "button functions": [buyHealth, buyWeapon, goTown],
   text: "Você entrou na loja."
 },
@@ -98,12 +98,34 @@ function buyHealth() {
 }
 
 function buyWeapon() {
-  if (gold >= 30){
-    gold -= 30;
-    currentWeapon ++;
-    goldText.innerText = gold;
+  if (currentWeapon < weapons.length - 1) {
+    if (gold >= 30){
+      gold -= 30;
+      currentWeapon ++;
+      goldText.innerText = gold;
+      let newWeapon = weapons[currentWeapon].name;
+      text.innerText = "Agora você tem um " + newWeapon + ".";
+      inventory.push(newWeapon);
+      text.innerText += " Em seu inventário você tem: " + inventory;
+    } else {
+      text.innerText = "Você não tem ouro suficiente para comprar uma arma."
+    }
   } else {
-    text.innerText = "Agora você tem uma nova arma";
+    text.innerText = "Você já tem a arma mais poderosa!";
+    button2.innerText = "Vender arma por 15 ouro";
+    button2.onclick = sellWeapon;
+  }  
+}
+
+function sellWeapon() {
+  if (inventory.length > 1) {
+    gold += 15;
+    goldText.innerText = gold;
+    let currentWeapon = inventory.shift();
+    text.innerText = "Você vendeu " + currentWeapon + ".";
+    text.innerText += " Em seu inventário você tem: " + inventory;
+  } else {
+    text.innerText = "Não venda sua única arma!";
   }
 }
 
