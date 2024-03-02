@@ -76,6 +76,12 @@ const locations = [
   "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
   "button functions": [restart, restart, restart],
   text: "Você derrotou o Drgão! VOCÊ ZEROU O JOGO! &#x1F389;"
+},
+{
+  name: "Ovo de Páscoa!", 
+  "button text": ["2", "8", "Ir para a praça da cidade?"], 
+  "button functions": [pickTwo, pickEight, goTown], 
+  text: "Você encontrou em um jogo secreto. Escolha um número acima. Dez números serão escolhidos aleatoriamente entre 0 e 10. Se o número escolhido corresponder a um dos números aleatórios, você ganha!" 
 }
 ];
 const monsters = [
@@ -272,5 +278,13 @@ function pickEight() {
 }
 
 function pick(guess) {
-
+  const numbers = [];
+  while (numbers.length < 10)
+  {
+    numbers.push(Math.floor(Math.random() * 11));
+  }
+  text.innerText = "Você escolheu " + guess + ". Aqui estão os números aleatórios:\n";
+  for (let i = 0; i < 10; i++) {
+    text.innerText += numbers[i]+ "\n";
+  }
 }
