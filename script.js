@@ -58,6 +58,18 @@ const locations = [
   "button text": ["Atacar", "Desviar", "Correr"],
   "button functions": [attack, dodge, goTown],
   text: "Você está lutando contra um monstro."
+},
+{
+  name: "Monstro morto!",
+  "button text": ["Ir para a cidade", "Ir para a cidade", "Ir para a cidade"],
+  "button functions": [goTown, goTown, goTown],
+  text: 'O monstro grita "Arg!" à medida que morre. Você ganha pontos de experiência e encontra ouro.'
+},
+{
+  name: "Perdeu!",
+  "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+  "button functions": [restart, restart, restart],
+  text: "Você morreu. ☠️"
 }
 ];
 const monsters = [
@@ -84,6 +96,7 @@ button2.onclick = goCave;
 button3.onclick = fightDragon;
 
 function update(location){
+  monsterStats.style.display = "none";
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
@@ -167,12 +180,49 @@ function goFight() {
   update(locations[3]);
   monsterHealth = monsters[fighting].health;
   monsterStats.style.display = 'block';
+  monsterName.innerText = monsters[fighting].name;
+  monsterHealthText.innerText = monsterHealth; 
 }
 
 function attack(){
-
+  text.innerText = "O monstro "+monsters[fighting].name+" ataca.";
+  text.innerText += " Você o ataca com seu "+weapons[currentWeapon].name+".";
+  health -= monsters[fighting].level;
+  //dano no monstro  = valor da arma atual + (valor aleario entre 1 e valor do XP)
+  monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+  healthText.innerText = health;
+  monsterHealthText.innerText = monsterHealth;
+  if (health <= 0){
+    lose();
+  } else if (monsterHealth <= 0){
+    defeatMonster();
+  }
 }
 
 function dodge(){
-  
+  text.innerText = "Você evitou o ataque do " + monsters[fighting].name;
+}
+
+function defeatMonster(){
+  gold += Math.floor(monsters[fighting].level*6.7);
+  xp += monsters[fighting].level;
+  goldText.innerText = gold;
+  xpText.innerText = xp;
+  update(locations[4]);
+}
+
+function lose(){
+  update(locations[5]);
+}
+
+function restart(){
+  xp = 0;
+  health = 100;
+  gold = 50;
+  currentWeapon = 0;
+  inventory = ["Luva"];
+  xpText.innerText = xp;
+  healthText.innerText = health;
+  goldText.innerText = gold;
+  goTown();
 }
