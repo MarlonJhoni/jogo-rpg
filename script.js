@@ -69,7 +69,13 @@ const locations = [
   name: "Perdeu!",
   "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
   "button functions": [restart, restart, restart],
-  text: "Você morreu. ☠️"
+  text: "Você morreu. &#x2620;"
+},
+{
+  name: "Ganhou!",
+  "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+  "button functions": [restart, restart, restart],
+  text: "Você derrotou o Drgão! VOCÊ ZEROU O JOGO! &#x1F389;"
 }
 ];
 const monsters = [
@@ -103,7 +109,7 @@ function update(location){
   button1.onclick = location["button functions"][0];
   button2.onclick = location["button functions"][1];
   button3.onclick = location["button functions"][2];  
-  text.innerText = location.text;
+  text.innerHTML = location.text;
 }
 
 function goTown() {
@@ -187,16 +193,39 @@ function goFight() {
 function attack(){
   text.innerText = "O monstro "+monsters[fighting].name+" ataca.";
   text.innerText += " Você o ataca com seu "+weapons[currentWeapon].name+".";
-  health -= monsters[fighting].level;
-  //dano no monstro  = valor da arma atual + (valor aleario entre 1 e valor do XP)
-  monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+  health -= getMonsterAttackValue(monsters[fighting].level);
+  if (isMonsterHit()) {
+    //dano no monstro  = valor da arma atual + (valor aleatório entre 1 e valor do XP do jogador)
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+  } else {
+    text.innerText += " Você errou o golpe.";
+  }
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
   if (health <= 0){
     lose();
   } else if (monsterHealth <= 0){
-    defeatMonster();
+    if (fighting === 2) {
+      winGame();
+    } else {
+      defeatMonster();
+    }
   }
+  if (Math.random() <= .1 && inventory.length !== 1){
+    text.innerText += " Sua arma "+inventory.pop()+" quebrou.";
+    currentWeapon--
+  }
+}
+
+function getMonsterAttackValue(level) {
+  const hit = (level * 5) - (Math.floor(Math.random() * xp));
+  //operador ternário (se a vida continuar maior que 0 subtrai, se não mostra 0)
+  alert(" Você levou dano e perdeu "+hit+" de vida. Cuidado!");
+  return hit > 0 ? hit : 0;
+}
+
+function isMonsterHit () {
+  return Math.random() > .2 || health < 20;
 }
 
 function dodge(){
@@ -215,6 +244,10 @@ function lose(){
   update(locations[5]);
 }
 
+function winGame(){
+  update(locations[6]);
+}
+
 function restart(){
   xp = 0;
   health = 100;
@@ -225,4 +258,19 @@ function restart(){
   healthText.innerText = health;
   goldText.innerText = gold;
   goTown();
+}
+
+function easterEgg() {
+  update(locations[7]);
+}
+
+function pickTwo() {
+  pick(2);
+}
+function pickEight() {
+  pick(8);
+}
+
+function pick(guess) {
+
 }

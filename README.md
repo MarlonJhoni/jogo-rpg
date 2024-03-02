@@ -1,6 +1,6 @@
 # Jogo de RPG - Dragon Repeller
 
-Bem-vindo ao meu jogo de RPG - Dragon Repeller! Este é um jogo simples em desenvolvimento usando HTML, CSS e JavaScript, onde os jogadores podem embarcar em aventuras emocionantes em um mundo de fantasia.
+Bem-vindo ao meu jogo de RPG - Dragon Repeller! Este é um jogo simples em desenvolvimento usando HTML, CSS e JavaScript, onde os jogadores podem embarcar em aventuras emocionantes em um mundo de fantasia. Cuidado guerreiro, sua arma pode quebrar durante uma batalha.
 
 ## Funcionalidades
 
